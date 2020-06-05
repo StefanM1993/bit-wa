@@ -1,6 +1,6 @@
 import React from 'react';
 import data from '../Data/RandomUsers';
-import {User} from '../User/User'
+import {User} from './User/User'
 
 const Users = () => {
     return (
