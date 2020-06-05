@@ -1,0 +1,23 @@
+
+.BlogPost{
+    display: block;
+    list-style-type: none;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    background-color: rgb(123, 153, 146);
+  }
+  
+  .BlogPost__Title{
+    margin-top: 8px;
+    padding-top: 8px;
+    margin-left: 8px;
+    padding-left: 8px;
+  }
+  
+  .BlogPost__Description{
+    margin-left: 8px;
+    padding-left: 8px;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+  }
+  
