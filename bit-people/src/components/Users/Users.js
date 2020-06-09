@@ -3,13 +3,13 @@ import "./Users.css";
 import { ListUser } from "./ListUser.js"
 import { GridUser } from "./GridUser.js";
 
+
 class Users extends React.Component {
     constructor(props) {
         super(props)
 
         this.state = {
             allUsers: []
-           
         };
     }
 
@@ -21,13 +21,13 @@ class Users extends React.Component {
                 allUsers: data.results
             }))
     }
-    
-    
+
+
     render() {
         return (
             <div className='Users'>
                 {this.state.allUsers.map((user, i) => {
-                    if (this.state.userView) {
+                    if (this.props.isListView) {
                         return <ListUser
                             key={i}
                             img={user.picture.thumbnail}
@@ -43,7 +43,8 @@ class Users extends React.Component {
                             lastName={user.name.last}
                             email={user.email}
                             dateOfBirth={user.dob.date} />
-                    }})
+                    }
+                })
                 }
             </div>
 

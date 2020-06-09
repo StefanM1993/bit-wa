@@ -6,3 +6,15 @@ export const hideEmail = (email) => {
     return array.join('@')
 
 }
+
+// export const changeIcon = () => {
+//     const list = document.querySelector('.Header__icons_list')
+//     const grid = document.querySelector('.Header__icons_grid')
+
+//     return (
+//         grid.addEventListener('click', () => {
+//             grid.display.style = 'none'
+//             list.display.style = 'block'
+//         })
+//     )
+

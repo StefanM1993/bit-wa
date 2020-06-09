@@ -27,10 +27,16 @@
 
 .Header__icons_grid {
   display: block;
+  position: absolute;
+  right: 2px;
 }
 
 .Header__icons_list {
   position: absolute;
   right: 2px;
-  display: none;
+  display: block;
 }
+
+/* .active{
+  display: block;
+} */

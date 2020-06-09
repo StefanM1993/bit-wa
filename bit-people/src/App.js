@@ -7,21 +7,24 @@ class App extends React.Component {
   constructor() {
     super()
 
-    this.state= {
-      userView: true
+    this.state = {
+      isListView: true
     }
 
-    
+    this.changeViewMode = this.changeViewMode.bind(this)
+
   }
 
   changeViewMode = () => {
+    this.setState({ isListView: !this.state.isListView })
 
   }
+
   render() {
     return (
       <div >
-        <Header />
-        <Users />
+        <Header changeView={this.changeViewMode} isListView={this.isListView} />
+        <Users isListView={this.state.isListView} />
         <Footer />
       </div>
     );
