@@ -7,7 +7,7 @@
 }
 
 .ListUser:hover {
-    background-color: rgb(237, 107, 134);
+    background-color: red;
     cursor: pointer;
     padding: 25px;
 }
