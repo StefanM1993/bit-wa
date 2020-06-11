@@ -9,7 +9,7 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      searchResult: []
+      searchResult: [],
     }
 
     this.setSearchResults = this.setSearchResults.bind(this);
@@ -21,12 +21,17 @@ class App extends React.Component {
     });
   }
 
+  removeGif = (id) => {
+    const newArray = this.state.searchResult.filter(item => item.id !== id)
+    this.setState({ searchResult: newArray })
+  }
+
   render() {
     return (
       <div className="App">
         <Header />
         <SearchBar setResults={this.setSearchResults} />
-        <GalleryOfGifs gifs={this.state.searchResult} />
+        <GalleryOfGifs removeGif={this.removeGif} gifs={this.state.searchResult} />
       </div>
     );
   }

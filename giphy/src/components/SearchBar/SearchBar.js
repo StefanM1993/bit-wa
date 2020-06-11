@@ -9,6 +9,7 @@ const SearchBar = ({ setResults }) => {
         if (event.keyCode === 13) {
             fetchGifs(event.target.value)
                 .then(result => {
+                    console.log(result);
                     setResults(result.data);
                 });
         }
