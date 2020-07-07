@@ -1,11 +1,6 @@
-.Footer {
-  width: 100%;
-  background-color: pink;
-  height: 80px;
-}
-
-.Footer__text {
-  color: white;
-  padding-top: 50px;
-  padding-left: 30px;
+.Footer__wrapper {
+    background-color: #ee6e73;
+    color: white;
+    display: flex;
+    justify-content: space-around;
 }

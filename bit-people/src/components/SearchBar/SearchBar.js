@@ -1,18 +1,22 @@
-import React from 'react'
-import './SearchBar.css'
+import React from 'react';
+import { AiOutlineSearch } from 'react-icons/ai';
+import './SearchBar.css';
 
-class SearchBar extends React.Component {
-
-    onSearch = (e) => {
-        this.props.onChange(e.target.value)
+const SearchBar = (props) => {
+    const onInputChange = (event) => {
+        props.onChange(event.target.value);
     }
 
-    render() {
-        return (
-            <div className="SearchBar">
-                <i className="fa fa-search"></i><input type="search" onChange={this.onSearch}></input>
-            </div>
-        )
-    }
+    return (
+        <div className="SearchBar__wrapper">
+            <AiOutlineSearch />
+            <input
+                type="text"
+                id="search-bar"
+                placeholder="Search users..."
+                onChange={onInputChange}
+            />
+        </div>)
 }
-export default SearchBar
+
+export { SearchBar }

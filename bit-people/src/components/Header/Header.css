@@ -1,48 +1,30 @@
-.Header {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  background-color: rgb(250, 179, 169);
-  position: relative;
-  margin-bottom: 20px;
+.Header__wrapper {
+    background-color: #ee6e73;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    box-shadow: 1px 1px 3px #0000007a;
 }
 
-.Header__title {
-  color: white;
-  margin-left: 50px;
+.Header__switcher>h4 {
+    font-size: 18px;
+    margin: 0px;
+    padding: 22px 10px;
 }
 
-.Header__icons {
-  position: relative;
-  display: flex;
-  color: white;
-  top: 30px;
-  right: 50px;
+.Header__switcher {
+    display: flex;
+    align-items: center;
 }
 
-.Header__icons_rel {
-  position: absolute;
-  right: 50px;
+.Header__switcher>svg {
+    width: 1.5em;
+    height: 1.5em;
+    font-weight: bold;
+    margin: 0px;
+    padding: 23px 20px;
 }
 
-.Header__icons_grid {
-  position: absolute;
-  right: 2px;
-}
-
-.Header__icons_list {
-  position: absolute;
-  right: 2px;
-  }
-
-.grid:hover {
-  cursor: pointer;
-}
-
-.Header__icons_list:hover {
-  cursor: pointer;
-}
-
-.Header__icons_rel:hover{
-  cursor: pointer;
+.Header__switcher>svg:hover, .Header__switcher>h4:hover {
+    background-color: rgba(0, 0, 0, .1);
 }

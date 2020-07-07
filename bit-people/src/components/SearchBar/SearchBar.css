@@ -1,16 +1,22 @@
-.SearchBar{
-    width: 90%;
+.SearchBar__wrapper {
+    display: flex;
+    width: 1100px;
     margin: 0 auto;
-    margin-bottom: 30px;
+    margin-top: 30px;
 }
 
-.SearchBar input {
-    margin-left: 10px;
-    width: 90%;
+#search-bar {
+    width: 1100px;
     border: none;
-    border-bottom: solid 2px black;
+    border-bottom: 1px solid lightgrey;
+    margin-bottom: 20px;
+    outline: none;
+    padding-bottom: 5px;
+    color: #757575;
 }
 
-.SearchBar i{
-    padding-left: 45px;
+.SearchBar__wrapper>svg {
+    width: 2em;
+    height: 2em;
+    margin-right: 20px;
 }

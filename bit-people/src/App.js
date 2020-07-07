@@ -1,81 +1,79 @@
 import React from 'react';
-import Header from './components/Header/Header.js'
-import Footer from './components/Footer/Footer.js'
-import Users from "./components/Users/Users.js"
-import SearchBar from './components/SearchBar/SearchBar.js';
-import { fetchUsers } from './functions.js';
+import { Header } from './components/Header/Header';
+import { SearchBar } from './components/SearchBar/SearchBar';
+import { Footer } from './components/Footer/Footer';
+import { Users } from './components/Users/Users';
+import { Loader } from './components/Loader/Loader';
+// import { Counter } from './components/Users/Counter/Counter';
 
 
 class App extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
 
     this.state = {
-      allUsers: [],
-      filteredUsers: [],
-      isListView: JSON.parse(localStorage.getItem('isListView')),
+      users: [],
+      isListView: true,
+      value: ''
     }
-
-    this.changeViewMode = this.changeViewMode.bind(this)
-    this.onSearchingUsers = this.onSearchingUsers.bind(this)
-  }
-
-
+    this.gridListSwitch = this.gridListSwitch.bind(this)
+  };
 
   componentDidMount() {
-    if (localStorage.getItem('users')) {
-      const users = JSON.parse(localStorage.getItem('users'));
-      this.setState({
-        filteredUsers: users,
-        allUsers: users
-      })
-    } else {
-      this.getUsers()
-    }
-
+    this.getData();
   }
+  //// Functions ////
 
-
-  getUsers() {
-    fetchUsers()
-      .then(data => {
-        this.setState({
-          allUsers: data.results,
-          filteredUsers: data.results
-        }, () => localStorage.setItem('users', JSON.stringify(data.results)))
-      })
-  }
-
-  onSearchingUsers = (searchQuery) => {
-    const filteredUsers = this.state.allUsers.filter(element => {
-      if (element.name.first.toLowerCase().includes(searchQuery.toLowerCase())
-        || element.name.last.toLowerCase().includes(searchQuery.toLowerCase())) {
-        return true
-      }
-
-      return false;
+  gridListSwitch = () => {
+    this.setState({
+      isListView: !this.state.isListView
     })
-
-    this.setState({ filteredUsers })
   }
 
-  changeViewMode = () => {
-    this.setState({ isListView: !this.state.isListView },
-      () => { localStorage.setItem('isListView', this.state.isListView) })
+  getData = () => {
+    if (!localStorage.getItem('userKey')) {
+      fetch('https://randomuser.me/api/?results=15')
+        .then(res => res.json())
+        .then(data => {
+          this.setState({ users: data.results })
+          localStorage.setItem('userKey', JSON.stringify(data.results))
+        });
+    } else {
+      this.setState({ users: JSON.parse(localStorage.getItem('userKey')) })
+    }
+  }
 
+  onReload = () => {
+    fetch('https://randomuser.me/api/?results=15')
+      .then(res => res.json())
+      .then(data => {
+        this.setState({ users: data.results })
+        localStorage.setItem('userKey', JSON.stringify(data.results))
+      });
+  }
+
+  onSearch = (newValue) => {
+
+    this.setState({ value: newValue });
+  }
+
+  renderContent = (searchResult) => {
+    if (this.state.users.length) {
+      return <Users users={searchResult} isListView={this.state.isListView} />
+    }
+    return <Loader />
   }
 
   render() {
+    const searchResult = this.state.users.filter(user => user.name.first.toLowerCase().includes(this.state.value.toLowerCase()) ||
+      user.name.last.toLowerCase().includes(this.state.value.toLowerCase()));
 
     return (
-      <div >
-        <Header changeView={this.changeViewMode} isListView={this.state.isListView} refreshUsers={() => this.getUsers()} />
-        <SearchBar onChange={this.onSearchingUsers} />
-        <Users
-          isListView={this.state.isListView}
-          searchState={this.inputValue}
-          filteredUsers={this.state.filteredUsers}
-          allUsers={this.state.allUsers} />
+      <div className="App">
+        <Header reload={this.onReload} switchFunc={this.gridListSwitch} switcher={this.state.isListView} />
+        <SearchBar onChange={this.onSearch} />
+        {/* <Counter gender={this.state.users.gender} /> */}
+        {this.renderContent(searchResult)}
         <Footer />
       </div>
     );
@@ -84,3 +82,49 @@ class App extends React.Component {
 }
 
 export default App;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

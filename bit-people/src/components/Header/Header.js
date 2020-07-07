@@ -1,23 +1,23 @@
-import React from 'react'
-import { FaBars } from 'react-icons/fa'
-import { FaRedo } from 'react-icons/fa'
-import { FaMicrosoft } from 'react-icons/fa'
-import './Header.css'
+import React from 'react';
+import './Header.css';
+import { IoMdRefresh } from 'react-icons/io';
+import { BsFillGrid3X3GapFill } from 'react-icons/bs';
+import { FaThList } from 'react-icons/fa';
 
-
-
-const Header = ({ changeView, isListView, refreshUsers }) => {
+const Header = (props) => {
     return (
-        <header className='Header'>
-            <h1 className='Header__title'>BIT People</h1>
-            <div className='Header__icons'>
-                <span className='Header__icons_rel' onClick={refreshUsers}><FaRedo /></span>
-                {isListView ?
-                    <span onClick={changeView} className='Header__icons_gird grid'><FaMicrosoft /></span>
-                    : <span onClick={changeView} className='Header__icons_list'><FaBars /></span>
-                }
+        <div className="Header__wrapper">
+            <h1>BIT People</h1>
+            <div className="Header__switcher">
+                <h4>About</h4>
+                <IoMdRefresh onClick={props.reload} />
+                {props.switcher ? <BsFillGrid3X3GapFill
+                    onClick={props.switchFunc} /> : <FaThList onClick={props.switchFunc} />}
             </div>
-        </header>
+
+
+        </div>
     )
 }
-export default Header
+
+export { Header };
